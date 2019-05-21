@@ -1,5 +1,7 @@
 ## 代码笔记
 # 目录
+* linux
+  * [安装nginx](linux/centos7安装nginx.md)
 * mysql
   * [主从分离](mysql/从0开始主从分离配置.md)
   * [查询方法](mysql/操作记录.md)
