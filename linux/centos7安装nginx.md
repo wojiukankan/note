@@ -76,3 +76,28 @@
 - 有可能需要开放80端口
     - `# firewall-cmd --zone=public --add-port=80/tcp --permanent`
     - `# firewall-cmd  --reload`
+- `nginx`解析`php`,[转载](https://juejin.im/post/58db7d742f301e007e9a00a7)
+    - 打开`nginx`配置文件
+    - `# vim /usr/local/nginx/conf/nginx.conf`
+    - 在最后加入`include /usr/local/nginx/conf/server/*;`，意思引入`/usr/local/nginx/conf/server/`下的所有文件，我们的虚拟主机配置就放到这里面
+    - 切换到目录`# cd /usr/local/nginx/conf/server/`
+    - 新建文件`# vim test_com.conf`,写入
+        ```
+        server {
+            listen 80;                          #监听80端口
+            server_name test.com;               #虚拟主机域名
+            root /usr/local/nginx/html/test_com;#代码路径
+    
+            location / {
+                    index index.php;            #跳转到test.com/index.php
+                    autoindex on;
+            }
+    
+            # 正则匹配到.php后缀的文件，代理到php-fpm
+            location ~ \.php$ {
+                    include /usr/local/nginx/conf/fastcgi.conf;  #加载nginx的fastcgi模块
+                    fastcgi_intercept_errors on;
+                    fastcgi_pass 127.0.0.1:9000;                 #nginx fastcgi进程监听的IP地址和端口
+            }
+        }
+        ```
