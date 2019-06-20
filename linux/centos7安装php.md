@@ -1,5 +1,5 @@
 ## 安装php
-- 安装依赖
+- 安装依赖 
     ```
     # yum install libxml2 libxml2-devel openssl openssl-devel bzip2 bzip2-devel libcurl libcurl-devel libjpeg libjpeg-devel libpng libpng-devel freetype freetype-devel gmp gmp-devel libmcrypt libmcrypt-devel readline readline-devel libxslt libxslt-devel
     ```
@@ -10,7 +10,7 @@
 - `./configure`准备安装
 - 添加以下参数：
     ```
-    ./configure --prefix=/usr/local/php/ --with-mysqli --with-pdo-mysql --with-iconv-dir --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir --enable-bcmath --enable-soap --enable-zip --with-curl=/usr/local/bin/ --enable-fpm --with-fpm-user=www --with-fpm-group=www --enable-mbstring --enable-sockets --with-gd --with-openssl --with-mhash --disable-fileinfo --with-config-file-path=/usr/local/php/etc
+    ./configure --prefix=/usr/local/php/ --with-mysqli --with-pdo-mysql --with-iconv-dir --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir --enable-bcmath --enable-soap --enable-zip --with-curl=/usr/local/bin/ --enable-fpm --with-fpm-user=www --with-fpm-group=www --enable-mbstring --enable-sockets --with-gd --with-openssl --with-mhash --disable-fileinfo --with-config-file-path=/usr/local/php/etc --enable-opcache
     ```
     参数解释：
     ```
