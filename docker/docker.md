@@ -1,0 +1,5 @@
+- docker pull 下载镜像
+- docker run 运行镜像
+- docker save 保存镜像 docker save -o nginx.tar nginx2:latest
+- docker load 加载镜像 docker load -i ./nginx.tar
+- docker exec 进入镜像 docker exec -it centos7 /bin/bash
