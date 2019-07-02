@@ -11,5 +11,20 @@
 - 但是此时的dev1镜像时跟原来的centos有关联的，删除dev1前无法删除centos，可以用`docker save -o centos.tar centos:dev1`先把镜像保存为tar压缩包，然后用`docker load -i ./centos.tar`加载
 > 发现保存出来的镜像非常大，1G多
 #### 想办法精简镜像
-- 用dockersfile进行构建
--  
+- 用Dockerfile进行构建
+- 基础镜像用centos
+```Dockerfile
+    FROM centos
+    RUN sh命令(以前文章写的centps安装nginx/php)
+    ...
+```
+- FROM 指定基础镜像，RUN执行sh命令，因为dockerfile每一行代码都会添加一层，导致体积变大，所以尽量奖多个sh命令用&&连接执行，并清理掉中途下载、生成的中间文件
+- 最后发现镜像也很大
+- 研究了一个官方的镜像，发现有个叫alpine的linux系统，可以以他为基础构建镜像
+- 同样的步骤，把centos的命令换城alpine的，对应的依赖包也是
+- alpine：apk add安装 apk update更新索引 apk del删除索引
+- 最终构建出来大小到了600M，还是有点大
+#### 用php官方的Dockerfile进行修改
+- 参考官方的Dockerfile文件修改一下php下载地址，密钥验证即可完成构建
+- 构建出来的php镜像只有80M
+#### 用docker-compose启动镜像
