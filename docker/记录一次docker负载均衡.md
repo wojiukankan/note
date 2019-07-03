@@ -28,3 +28,4 @@
 - 参考官方的Dockerfile文件修改一下php下载地址，密钥验证即可完成构建
 - 构建出来的php镜像只有80M
 #### 用docker-compose启动镜像
+- [参考](docker-compose.yml)
